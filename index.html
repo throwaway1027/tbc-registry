@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBC Pilot & RMT Registry (NA)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAF6EE;
+            --card-bg: #F6EFE0;
+            --border-color: #E6DCB8;
+            --border-subtle: #EFE6CD;
+            --text-title: #7C6740;
+            --text-sub: #B2A180;
+            --badge-bg: #EFE4CA;
+            --name-horde: #C54B40;   /* Red */
+            --name-alliance: #3B7FB9; /* Blue */
+            --font-serif: 'Cinzel', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: #4A4031;
+            font-family: var(--font-sans);
+            padding: 2.5rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1060px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* --- HEADER CARD --- */
+        .header-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 12px rgba(120, 100, 60, 0.04);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .shield-icon {
+            width: 46px;
+            height: 52px;
+            background: #D9C89E;
+            border: 2px solid #9E8552;
+            clip-path: polygon(50% 0%, 100% 15%, 100% 75%, 50% 100%, 0% 75%, 0% 15%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shield-icon::after {
+            content: "†";
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: #614F2E;
+            font-weight: bold;
+        }
+
+        .title-group h1 {
+            font-family: var(--font-serif);
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--text-title);
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+
+        .title-group p {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .tags-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1rem;
+        }
+
+        .tag-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag-pill {
+            background: #FDFBF7;
+            border: 1px solid var(--border-color);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #7A694A;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .tag-pill:hover {
+            background: #F3EBD8;
+        }
+
+        .tag-pill.active {
+            background: #EFE4CA;
+            border-color: #D6C49D;
+            font-weight: 700;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .dot-horde { background: var(--name-horde); }
+        .dot-alliance { background: var(--name-alliance); }
+
+        .entry-count-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-sub);
+        }
+
+        /* --- NOTICE BANNER --- */
+        .notice-banner {
+            background: #F3EBD8;
+            border: 1px dashed #D6C7A1;
+            border-radius: 8px;
+            padding: 0.85rem 1.25rem;
+            text-align: center;
+            color: #665538;
+        }
+
+        .notice-banner strong {
+            display: block;
+            font-size: 0.88rem;
+            margin-bottom: 2px;
+        }
+
+        .notice-banner span {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--name-horde);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* --- MAIN LIST CARD --- */
+        .content-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+            box-shadow: 0 4px 12px rgba(120, 100, 60, 0.04);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .card-icon {
+            color: var(--text-title);
+            font-size: 1.1rem;
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-title);
+            letter-spacing: 0.5px;
+        }
+
+        .pill-badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 0.15rem 0.65rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-title);
+        }
+
+        /* --- 4-COLUMN NAME GRID --- */
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem 1.5rem;
+        }
+
+        .name-item {
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1.2;
+        }
+
+        .name-item.horde { color: var(--name-horde); }
+        .name-item.alliance { color: var(--name-alliance); }
+
+        @media (max-width: 800px) {
+            .names-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .names-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-card">
+        <div class="header-top">
+            <div class="header-brand">
+                <div class="shield-icon"></div>
+                <div class="title-group">
+                    <h1>TBC PILOT & RMT REGISTRY (NA)</h1>
+                    <p>SEASON 3 · UPDATED 10-27-2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tags-row">
+            <div class="tag-group">
+                <span class="tag-pill active" onclick="filterFaction('all', this)">All</span>
+                <span class="tag-pill" onclick="filterFaction('horde', this)"><span class="dot dot-horde"></span> Horde</span>
+                <span class="tag-pill" onclick="filterFaction('alliance', this)"><span class="dot dot-alliance"></span> Alliance</span>
+            </div>
+            <div class="entry-count-header" id="headerCount">24 ENTRIES</div>
+        </div>
+    </div>
+
+    <div class="notice-banner">
+        <strong>EU Cabal List includes names of suspected buyers and pilots/self-plays.</strong>
+        <span>Dodge them, report them, blacklist them.</span>
+    </div>
+
+    <div class="content-card">
+        <div class="card-header">
+            <div class="card-title-group">
+                <span class="card-icon">⚔</span>
+                <span class="card-title">SUSPECTED PILOTS / SELF-PLAYS + RMT</span>
+            </div>
+            <div class="pill-badge" id="cardBadge">24</div>
+        </div>
+
+        <div class="names-grid" id="namesGrid">
+            <!-- Horde (Red) -->
+            <div class="name-item horde" data-faction="horde">Bhcs</div>
+            <div class="name-item horde" data-faction="horde">Thakhaki</div>
+            <div class="name-item horde" data-faction="horde">Onimpulse</div>
+            <div class="name-item horde" data-faction="horde">Spectersix</div>
+            <div class="name-item horde" data-faction="horde">Cløvs</div>
+            <div class="name-item horde" data-faction="horde">Bobrick</div>
+            <div class="name-item horde" data-faction="horde">Glexannick</div>
+            <div class="name-item horde" data-faction="horde">Shonin</div>
+            <div class="name-item horde" data-faction="horde">Tìmmi</div>
+            <div class="name-item horde" data-faction="horde">Rhaikor</div>
+            <div class="name-item horde" data-faction="horde">Trakz</div>
+            <div class="name-item horde" data-faction="horde">Peachesxr</div>
+            <div class="name-item horde" data-faction="horde">Dógface</div>
+            <div class="name-item horde" data-faction="horde">Disclosure</div>
+            <div class="name-item horde" data-faction="horde">Beauchode</div>
+
+            <!-- Alliance (Blue) -->
+            <div class="name-item alliance" data-faction="alliance">Leblanq</div>
+            <div class="name-item alliance" data-faction="alliance">Topcriminal</div>
+            <div class="name-item alliance" data-faction="alliance">Silverkîtty</div>
+            <div class="name-item alliance" data-faction="alliance">Tdales</div>
+            <div class="name-item alliance" data-faction="alliance">Søøul</div>
+            <div class="name-item alliance" data-faction="alliance">Whatupcuhh</div>
+            <div class="name-item alliance" data-faction="alliance">Blondish</div>
+            <div class="name-item alliance" data-faction="alliance">Milayika</div>
+            <div class="name-item alliance" data-faction="alliance">Rxnoc</div>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterFaction(faction, el) {
+    document.querySelectorAll('.tag-pill').forEach(pill => pill.classList.remove('active'));
+    el.classList.add('active');
+
+    const items = document.querySelectorAll('.name-item');
+    let count = 0;
+
+    items.forEach(item => {
+        if (faction === 'all' || item.getAttribute('data-faction') === faction) {
+            item.style.display = 'block';
+            count++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    document.getElementById('headerCount').innerText = `${count} ENTRIES`;
+    document.getElementById('cardBadge').innerText = count;
+}
+</script>
+
+</body>
+</html>
