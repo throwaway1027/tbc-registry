@@ -1,357 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TBC Pilot & RMT Registry (NA)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #121316;
-            --card-bg: #1A1C22;
-            --border-color: #2D313D;
-            --border-subtle: #232732;
-            --text-title: #D4B872;
-            --text-main: #E5E0D8;
-            --text-sub: #8C92A4;
-            --badge-bg: #272A34;
-            --name-horde: #FF5B52;
-            --name-alliance: #4DA1FF;
-            --font-serif: 'Cinzel', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBC Pilot & RMT Registry (NA)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F1013;
+    --surface: #17191E;
+    --surface-2: #1D2027;
+    --border: #262A33;
+    --gold: #D4B872;
+    --gold-dim: rgba(212, 184, 114, 0.12);
+    --text: #E6E2DA;
+    --muted: #8A90A0;
+    --horde: #F0605A;
+    --alliance: #5AA8FF;
+    --serif: 'Cinzel', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius: 14px;
+  }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            padding: 2.5rem 1.5rem;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-        }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    padding: 48px 16px;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
 
-        .container {
-            width: 100%;
-            max-width: 1060px;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+  .wrap { max-width: 960px; margin: 0 auto; display: grid; gap: 20px; }
 
-        .header-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-        }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
 
-        .header-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.25rem;
-        }
+  /* Header */
+  .header { padding: 28px 32px; display: flex; align-items: center; gap: 18px; }
 
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
+  .crest {
+    width: 44px; height: 50px; flex-shrink: 0;
+    display: grid; place-items: center;
+    background: var(--gold-dim);
+    color: var(--gold);
+    font-family: var(--serif); font-size: 1.6rem; font-weight: 700;
+    clip-path: polygon(50% 0%, 100% 14%, 100% 74%, 50% 100%, 0% 74%, 0% 14%);
+  }
 
-        .shield-icon {
-            width: 46px;
-            height: 52px;
-            background: #2E281E;
-            border: 2px solid var(--text-title);
-            clip-path: polygon(50% 0%, 100% 15%, 100% 75%, 50% 100%, 0% 75%, 0% 15%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
+  h1 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
 
-        .shield-icon::after {
-            content: "†";
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            color: var(--text-title);
-            font-weight: bold;
-        }
+  .meta {
+    margin-top: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-        .title-group h1 {
-            font-family: var(--font-serif);
-            font-size: 1.65rem;
-            font-weight: 700;
-            color: var(--text-title);
-            letter-spacing: 0.5px;
-            line-height: 1.1;
-        }
+  /* Notice */
+  .notice {
+    padding: 18px 24px;
+    border-left: 3px solid var(--gold);
+    background: linear-gradient(90deg, var(--gold-dim), transparent 70%), var(--surface);
+  }
 
-        .title-group p {
-            font-family: var(--font-sans);
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-sub);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
+  .notice-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+  }
 
-        .tags-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid var(--border-subtle);
-            padding-top: 1rem;
-        }
+  .notice p { margin-top: 6px; font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
 
-        .tag-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 
-        .tag-pill {
-            background: #14161B;
-            border: 1px solid var(--border-color);
-            padding: 0.35rem 0.85rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-sub);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            user-select: none;
-        }
+  .chip {
+    font-size: 0.8rem; font-weight: 600;
+    padding: 5px 12px; border-radius: 999px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text);
+  }
 
-        .tag-pill:hover {
-            background: #232732;
-            color: var(--text-main);
-        }
+  /* List card */
+  .list-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--border);
+  }
 
-        .tag-pill.active {
-            background: var(--badge-bg);
-            border-color: var(--text-title);
-            color: var(--text-title);
-            font-weight: 700;
-        }
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--gold); letter-spacing: 0.04em;
+  }
 
-        .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-        }
+  .filters {
+    display: inline-flex; padding: 3px; gap: 2px;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+  }
 
-        .dot-horde { background: var(--name-horde); }
-        .dot-alliance { background: var(--name-alliance); }
+  .filters button {
+    font: inherit; font-size: 0.78rem; font-weight: 600;
+    color: var(--muted); background: none; border: 0; cursor: pointer;
+    padding: 6px 14px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 7px;
+    transition: background .15s, color .15s;
+  }
 
-        .entry-count-header {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--text-sub);
-        }
+  .filters button:hover { color: var(--text); }
+  .filters button.active { background: var(--surface-2); color: var(--text); }
+  .filters .n { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
 
-        .notice-banner {
-            background: #221C16;
-            border: 1px dashed #5A4323;
-            border-radius: 8px;
-            padding: 0.85rem 1.25rem;
-            text-align: center;
-            color: #D3C3A8;
-        }
+  .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot.horde { background: var(--horde); }
+  .dot.alliance { background: var(--alliance); }
 
-        .notice-banner strong {
-            display: block;
-            font-size: 0.88rem;
-            margin-bottom: 4px;
-        }
+  .names {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px 12px;
+    padding: 20px 20px 24px;
+  }
 
-        .notice-banner span {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-title);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
+  .names li {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 12px; border-radius: 8px;
+    font-size: 0.92rem; font-weight: 600;
+    transition: background .15s;
+  }
 
-        .content-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem 1.75rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-        }
+  .names li:hover { background: var(--surface-2); }
+  .names li.horde { color: var(--horde); }
+  .names li.alliance { color: var(--alliance); }
+  .names li[hidden] { display: none; }
+  .names a { color: inherit; text-decoration: none; }
+  .names a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .card-title-group {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .card-icon {
-            color: var(--text-title);
-            font-size: 1.1rem;
-        }
-
-        .card-title {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-title);
-            letter-spacing: 0.5px;
-        }
-
-        .pill-badge {
-            background: var(--badge-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 0.15rem 0.65rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-title);
-        }
-
-        .names-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem 1.5rem;
-        }
-
-        .name-item {
-            font-weight: 700;
-            font-size: 0.95rem;
-            line-height: 1.2;
-        }
-
-        .name-item.horde { color: var(--name-horde); }
-        .name-item.alliance { color: var(--name-alliance); }
-
-        @media (max-width: 800px) {
-            .names-grid { grid-template-columns: repeat(2, 1fr); }
-            body { padding: 1rem; }
-        }
-        @media (max-width: 480px) {
-            .names-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  @media (max-width: 820px) {
+    .names { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    body { padding: 24px 16px; }
+    .header { padding: 22px 20px; }
+    h1 { font-size: 1.25rem; }
+    .list-head { padding: 18px 20px; }
+    .names { grid-template-columns: repeat(2, 1fr); padding: 12px 10px 16px; }
+  }
+</style>
 </head>
 <body>
+<main class="wrap">
 
-<div class="container">
-    <div class="header-card">
-        <div class="header-top">
-            <div class="header-brand">
-                <div class="shield-icon"></div>
-                <div class="title-group">
-                    <h1>TBC PILOT & RMT REGISTRY (NA)</h1>
-                    <p>SEASON 3 · UPDATED 10-27-2026</p>
-                </div>
-            </div>
-        </div>
+  <header class="card header">
+    <div class="crest">†</div>
+    <div>
+      <h1>TBC Pilot &amp; RMT Registry (NA)</h1>
+      <div class="meta">Season 3 · Updated 10-27-2026</div>
+    </div>
+  </header>
 
-        <div class="tags-row">
-            <div class="tag-group">
-                <span class="tag-pill active" onclick="filterFaction('all', this)">All</span>
-                <span class="tag-pill" onclick="filterFaction('horde', this)"><span class="dot dot-horde"></span> Horde</span>
-                <span class="tag-pill" onclick="filterFaction('alliance', this)"><span class="dot dot-alliance"></span> Alliance</span>
-            </div>
-            <div class="entry-count-header" id="headerCount">28 ENTRIES</div>
-        </div>
+  <section class="card notice">
+    <div class="notice-label">EU Cabal List</div>
+    <p>Includes names of suspected buyers and pilots / self-plays.</p>
+    <div class="chips">
+      <span class="chip">Laynerz</span>
+      <span class="chip">Avizura</span>
+      <span class="chip">Gekku</span>
+      <span class="chip">Joxibaba</span>
+      <span class="chip">Blackfirez</span>
+      <span class="chip">Solomon</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="list-head">
+      <h2>Suspected RMT Pilots / Self-Plays</h2>
+      <div class="filters" role="tablist">
+        <button class="active" data-filter="all">All <span class="n" data-count="all"></span></button>
+        <button data-filter="horde"><span class="dot horde"></span>Horde <span class="n" data-count="horde"></span></button>
+        <button data-filter="alliance"><span class="dot alliance"></span>Alliance <span class="n" data-count="alliance"></span></button>
+      </div>
     </div>
 
-    <div class="notice-banner">
-        <strong>EU Cabal List includes names of suspected buyers and pilots/self-plays.</strong>
-        <span>SUSPECTED CABAL Players: Laynerz, Avizura, Gekku, Joxibaba, Blackfirez, Solomon</span>
-    </div>
+    <ul class="names" id="names">
+      <li class="horde">Bhcs</li>
+      <li class="horde">Thakhaki</li>
+      <li class="horde">Onimpulse</li>
+      <li class="horde">Spectersix</li>
+      <li class="horde">Cløvs</li>
+      <li class="horde">Bobrick</li>
+      <li class="horde">Glexannick</li>
+      <li class="horde">Shonin</li>
+      <li class="horde">Tìmmi</li>
+      <li class="horde">Rhaikor</li>
+      <li class="horde">Trakz</li>
+      <li class="horde">Peachesxr</li>
+      <li class="horde">Dógface</li>
+      <li class="horde">Disclosure</li>
+      <li class="horde">Irisanga</li>
+      <li class="horde">Bigbewty</li>
+      <li class="horde">Witnessmoi</li>
+      <li class="horde">Chrisypissy</li>
+      <li class="horde"><a href="https://anniversary.xunamate.gg/character/us/nightslayer/honeybadgerx?region=us" target="_blank" rel="noopener">Honeybadgerx</a></li>
 
-    <div class="content-card">
-        <div class="card-header">
-            <div class="card-title-group">
-                <span class="card-icon">⚔</span>
-                <span class="card-title">SUSPECTED RMT PILOTS / SELF-PLAYS</span>
-            </div>
-            <div class="pill-badge" id="cardBadge">28</div>
-        </div>
+      <li class="alliance">Leblanq</li>
+      <li class="alliance">Topcriminal</li>
+      <li class="alliance">Silverkîtty</li>
+      <li class="alliance">Tdales</li>
+      <li class="alliance">Søøul</li>
+      <li class="alliance">Whatupcuhh</li>
+      <li class="alliance">Blondish</li>
+      <li class="alliance">Milayika</li>
+      <li class="alliance">Rxnoc</li>
+      <li class="alliance">Beauchode</li>
+    </ul>
+  </section>
 
-        <div class="names-grid" id="namesGrid">
-            <!-- Horde (Red) -->
-            <div class="name-item horde" data-faction="horde">Bhcs</div>
-            <div class="name-item horde" data-faction="horde">Thakhaki</div>
-            <div class="name-item horde" data-faction="horde">Onimpulse</div>
-            <div class="name-item horde" data-faction="horde">Spectersix</div>
-            <div class="name-item horde" data-faction="horde">Cløvs</div>
-            <div class="name-item horde" data-faction="horde">Bobrick</div>
-            <div class="name-item horde" data-faction="horde">Glexannick</div>
-            <div class="name-item horde" data-faction="horde">Shonin</div>
-            <div class="name-item horde" data-faction="horde">Tìmmi</div>
-            <div class="name-item horde" data-faction="horde">Rhaikor</div>
-            <div class="name-item horde" data-faction="horde">Trakz</div>
-            <div class="name-item horde" data-faction="horde">Peachesxr</div>
-            <div class="name-item horde" data-faction="horde">Dógface</div>
-            <div class="name-item horde" data-faction="horde">Disclosure</div>
-            <div class="name-item horde" data-faction="horde">Irisanga</div>
-            <div class="name-item horde" data-faction="horde">Bigbewty</div>
-            <div class="name-item horde" data-faction="horde">Witnessmoi</div>
-            <div class="name-item horde" data-faction="horde">Chrisypissy</div>
-
-            <!-- Alliance (Blue) -->
-            <div class="name-item alliance" data-faction="alliance">Leblanq</div>
-            <div class="name-item alliance" data-faction="alliance">Topcriminal</div>
-            <div class="name-item alliance" data-faction="alliance">Silverkîtty</div>
-            <div class="name-item alliance" data-faction="alliance">Tdales</div>
-            <div class="name-item alliance" data-faction="alliance">Søøul</div>
-            <div class="name-item alliance" data-faction="alliance">Whatupcuhh</div>
-            <div class="name-item alliance" data-faction="alliance">Blondish</div>
-            <div class="name-item alliance" data-faction="alliance">Milayika</div>
-            <div class="name-item alliance" data-faction="alliance">Rxnoc</div>
-            <div class="name-item alliance" data-faction="alliance">Beauchode</div>
-        </div>
-    </div>
-</div>
+</main>
 
 <script>
-function filterFaction(faction, el) {
-    document.querySelectorAll('.tag-pill').forEach(pill => pill.classList.remove('active'));
-    el.classList.add('active');
+  const items = [...document.querySelectorAll('#names li')];
+  const counts = {
+    all: items.length,
+    horde: items.filter(li => li.classList.contains('horde')).length,
+    alliance: items.filter(li => li.classList.contains('alliance')).length
+  };
+  document.querySelectorAll('[data-count]').forEach(el => el.textContent = counts[el.dataset.count]);
 
-    const items = document.querySelectorAll('.name-item');
-    let count = 0;
-
-    items.forEach(item => {
-        if (faction === 'all' || item.getAttribute('data-faction') === faction) {
-            item.style.display = 'block';
-            count++;
-        } else {
-            item.style.display = 'none';
-        }
+  document.querySelectorAll('.filters button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      items.forEach(li => li.hidden = f !== 'all' && !li.classList.contains(f));
     });
-
-    document.getElementById('headerCount').innerText = count + ' ENTRIES';
-    document.getElementById('cardBadge').innerText = count;
-}
+  });
 </script>
-
 </body>
 </html>
