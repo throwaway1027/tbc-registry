@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TBC Pilot & RMT Registry (NA)</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -206,4 +204,154 @@
             margin-bottom: 1.5rem;
         }
 
-        .card-title
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .card-icon {
+            color: var(--text-title);
+            font-size: 1.1rem;
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-title);
+            letter-spacing: 0.5px;
+        }
+
+        .pill-badge {
+            background: var(--badge-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 0.15rem 0.65rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-title);
+        }
+
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem 1.5rem;
+        }
+
+        .name-item {
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1.2;
+        }
+
+        .name-item.horde { color: var(--name-horde); }
+        .name-item.alliance { color: var(--name-alliance); }
+
+        @media (max-width: 800px) {
+            .names-grid { grid-template-columns: repeat(2, 1fr); }
+            body { padding: 1rem; }
+        }
+        @media (max-width: 480px) {
+            .names-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-card">
+        <div class="header-top">
+            <div class="header-brand">
+                <div class="shield-icon"></div>
+                <div class="title-group">
+                    <h1>TBC PILOT & RMT REGISTRY (NA)</h1>
+                    <p>SEASON 3 · UPDATED 10-27-2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tags-row">
+            <div class="tag-group">
+                <span class="tag-pill active" onclick="filterFaction('all', this)">All</span>
+                <span class="tag-pill" onclick="filterFaction('horde', this)"><span class="dot dot-horde"></span> Horde</span>
+                <span class="tag-pill" onclick="filterFaction('alliance', this)"><span class="dot dot-alliance"></span> Alliance</span>
+            </div>
+            <div class="entry-count-header" id="headerCount">28 ENTRIES</div>
+        </div>
+    </div>
+
+    <div class="notice-banner">
+        <strong>EU Cabal List includes names of suspected buyers and pilots/self-plays.</strong>
+        <span>SUSPECTED CABAL Players: Laynerz, Avizura, Gekku, Joxibaba, Blackfirez, Solomon</span>
+    </div>
+
+    <div class="content-card">
+        <div class="card-header">
+            <div class="card-title-group">
+                <span class="card-icon">⚔</span>
+                <span class="card-title">SUSPECTED RMT PILOTS / SELF-PLAYS</span>
+            </div>
+            <div class="pill-badge" id="cardBadge">28</div>
+        </div>
+
+        <div class="names-grid" id="namesGrid">
+            <!-- Horde (Red) -->
+            <div class="name-item horde" data-faction="horde">Bhcs</div>
+            <div class="name-item horde" data-faction="horde">Thakhaki</div>
+            <div class="name-item horde" data-faction="horde">Onimpulse</div>
+            <div class="name-item horde" data-faction="horde">Spectersix</div>
+            <div class="name-item horde" data-faction="horde">Cløvs</div>
+            <div class="name-item horde" data-faction="horde">Bobrick</div>
+            <div class="name-item horde" data-faction="horde">Glexannick</div>
+            <div class="name-item horde" data-faction="horde">Shonin</div>
+            <div class="name-item horde" data-faction="horde">Tìmmi</div>
+            <div class="name-item horde" data-faction="horde">Rhaikor</div>
+            <div class="name-item horde" data-faction="horde">Trakz</div>
+            <div class="name-item horde" data-faction="horde">Peachesxr</div>
+            <div class="name-item horde" data-faction="horde">Dógface</div>
+            <div class="name-item horde" data-faction="horde">Disclosure</div>
+            <div class="name-item horde" data-faction="horde">Irisanga</div>
+            <div class="name-item horde" data-faction="horde">Bigbewty</div>
+            <div class="name-item horde" data-faction="horde">Witnessmoi</div>
+            <div class="name-item horde" data-faction="horde">Chrisypissy</div>
+
+            <!-- Alliance (Blue) -->
+            <div class="name-item alliance" data-faction="alliance">Leblanq</div>
+            <div class="name-item alliance" data-faction="alliance">Topcriminal</div>
+            <div class="name-item alliance" data-faction="alliance">Silverkîtty</div>
+            <div class="name-item alliance" data-faction="alliance">Tdales</div>
+            <div class="name-item alliance" data-faction="alliance">Søøul</div>
+            <div class="name-item alliance" data-faction="alliance">Whatupcuhh</div>
+            <div class="name-item alliance" data-faction="alliance">Blondish</div>
+            <div class="name-item alliance" data-faction="alliance">Milayika</div>
+            <div class="name-item alliance" data-faction="alliance">Rxnoc</div>
+            <div class="name-item alliance" data-faction="alliance">Beauchode</div>
+        </div>
+    </div>
+</div>
+
+<script>
+function filterFaction(faction, el) {
+    document.querySelectorAll('.tag-pill').forEach(pill => pill.classList.remove('active'));
+    el.classList.add('active');
+
+    const items = document.querySelectorAll('.name-item');
+    let count = 0;
+
+    items.forEach(item => {
+        if (faction === 'all' || item.getAttribute('data-faction') === faction) {
+            item.style.display = 'block';
+            count++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    document.getElementById('headerCount').innerText = count + ' ENTRIES';
+    document.getElementById('cardBadge').innerText = count;
+}
+</script>
+
+</body>
+</html>
