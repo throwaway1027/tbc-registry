@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TBC Pilot & RMT Registry (NA)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,13 +17,17 @@
             --text-main: #E5E0D8;
             --text-sub: #8C92A4;
             --badge-bg: #272A34;
-            --name-horde: #FF5B52;   /* Vibrant Red for Dark Mode */
-            --name-alliance: #4DA1FF; /* Bright Blue for Dark Mode */
+            --name-horde: #FF5B52;
+            --name-alliance: #4DA1FF;
             --font-serif: 'Cinzel', Georgia, serif;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             background-color: var(--bg-color);
@@ -41,7 +47,6 @@
             gap: 1.5rem;
         }
 
-        /* --- HEADER CARD --- */
         .header-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -72,6 +77,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .shield-icon::after {
@@ -160,7 +166,6 @@
             color: var(--text-sub);
         }
 
-        /* --- NOTICE BANNER --- */
         .notice-banner {
             background: #221C16;
             border: 1px dashed #5A4323;
@@ -184,7 +189,6 @@
             text-transform: uppercase;
         }
 
-        /* --- MAIN LIST CARD --- */
         .content-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -202,61 +206,4 @@
             margin-bottom: 1.5rem;
         }
 
-        .card-title-group {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .card-icon {
-            color: var(--text-title);
-            font-size: 1.1rem;
-        }
-
-        .card-title {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-title);
-            letter-spacing: 0.5px;
-        }
-
-        .pill-badge {
-            background: var(--badge-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 0.15rem 0.65rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-title);
-        }
-
-        /* --- 4-COLUMN NAME GRID --- */
-        .names-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem 1.5rem;
-        }
-
-        .name-item {
-            font-weight: 700;
-            font-size: 0.95rem;
-            line-height: 1.2;
-        }
-
-        .name-item.horde { color: var(--name-horde); }
-        .name-item.alliance { color: var(--name-alliance); }
-
-        @media (max-width: 800px) {
-            .names-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-            .names-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="header-card">
-        <div class="header-top">
+        .card-title
