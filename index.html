@@ -191,9 +191,9 @@
     <div class="list-head">
       <h2>Suspected Boosters, RMT Pilots and Self-Plays</h2>
       <div class="filters" role="tablist">
-        <button class="active" data-filter="all">All <span class="n" data-count="all"></span></button>
-        <button data-filter="horde"><span class="dot horde"></span>Horde <span class="n" data-count="horde"></span></button>
-        <button data-filter="alliance"><span class="dot alliance"></span>Alliance <span class="n" data-count="alliance"></span></button>
+        <button type="button" class="active" data-filter="all">All <span class="n" data-count="all"></span></button>
+        <button type="button" data-filter="horde"><span class="dot horde"></span>Horde <span class="n" data-count="horde"></span></button>
+        <button type="button" data-filter="alliance"><span class="dot alliance"></span>Alliance <span class="n" data-count="alliance"></span></button>
       </div>
     </div>
 
@@ -236,12 +236,35 @@
 </main>
 
 <script>
-  const items = [...document.querySelectorAll('#names li')];
-  const counts = {
-    all: 30,
-    horde: items.filter(li => li.classList.contains('horde')).length,
-    alliance: items.filter(li => li.classList.contains('alliance')).length
-  };
-  document.querySelectorAll('[data-count]').forEach(el => el.textContent = counts[el.dataset.count]);
-
-  document.querySelectorAll('.filters button').forEach(btn => {
+(function () {
+  function init() {
+    var list = document.getElementById('names');
+    if (!list) return;
+    var items = Array.prototype.slice.call(list.querySelectorAll('li'));
+    var counts = {
+      all: 30,
+      horde: items.filter(function (li) { return li.classList.contains('horde'); }).length,
+      alliance: items.filter(function (li) { return li.classList.contains('alliance'); }).length
+    };
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      el.textContent = counts[el.getAttribute('data-count')];
+    });
+    var buttons = document.querySelectorAll('.filters button');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        buttons.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var f = btn.getAttribute('data-filter');
+        items.forEach(function (li) {
+          li.style.display = (f === 'all' || li.classList.contains(f)) ? '' : 'none';
+        });
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>
