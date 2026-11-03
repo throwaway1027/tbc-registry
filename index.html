@@ -170,7 +170,7 @@
     <div class="crest">†</div>
     <div>
       <h1>TBC Pilot &amp; RMT Registry (NA)</h1>
-      <div class="meta">Season 3 · Updated 10-27-2026</div>
+      <div class="meta">Season 3 · Updated 11-3-2026</div>
     </div>
   </header>
 
@@ -216,6 +216,7 @@
       <li class="horde">Bigbewty</li>
       <li class="horde">Witnessmoi</li>
       <li class="horde">Chrisypissy</li>
+      <li class="horde">Badlockbob</li> 
       <li class="horde"><a href="https://anniversary.xunamate.gg/character/us/nightslayer/honeybadgerx?region=us" target="_blank" rel="noopener">Honeybadgerx</a></li>
 
       <li class="alliance">Leblanq</li>
@@ -228,6 +229,7 @@
       <li class="alliance">Milayika</li>
       <li class="alliance">Rxnoc</li>
       <li class="alliance">Beauchode</li>
+      <li class="alliance">Sinderélla</li>
     </ul>
   </section>
 
@@ -236,20 +238,10 @@
 <script>
   const items = [...document.querySelectorAll('#names li')];
   const counts = {
-    all: items.length,
+    all: 30,
     horde: items.filter(li => li.classList.contains('horde')).length,
     alliance: items.filter(li => li.classList.contains('alliance')).length
   };
   document.querySelectorAll('[data-count]').forEach(el => el.textContent = counts[el.dataset.count]);
 
   document.querySelectorAll('.filters button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      items.forEach(li => li.hidden = f !== 'all' && !li.classList.contains(f));
-    });
-  });
-</script>
-</body>
-</html>
